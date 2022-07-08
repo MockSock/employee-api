@@ -33,7 +33,12 @@ def hello_world():
     return "Hello World"
 
 @app.route("/employees")
-def getEmployees():
+def get_employees():
     entries = Employee.query.all()
     result = employee_schema.dump(entries)
     return jsonify(result)
+
+@app.route("/employees", methods=["POST"])
+def create_employees():
+    req = request.get_json()
+    entries = Employee.query.all()
