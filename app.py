@@ -24,7 +24,7 @@ employee_schema = EmployeeSchema(many=True)
 
 if __name__ == "__main__":
     db.create_all() 
-    app.run(debug=True)
+    app.run(host="localhost")
 
 @app.route("/")
 def hello_world():
@@ -32,5 +32,6 @@ def hello_world():
 
 @app.route("/employees")
 def getEmployees():
-    
-    return "I will be a get method soon"
+    entries = Employee.query.all()
+    result = employee_schema.dump(entries)
+    return jsonify(result)
