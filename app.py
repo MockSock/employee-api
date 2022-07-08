@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+# put file name without .py
+from id import make_random_id
 
 app = Flask(__name__)
 # Config work
@@ -41,4 +43,5 @@ def get_employees():
 @app.route("/employees", methods=["POST"])
 def create_employees():
     req = request.get_json()
+    make_random_id
     entries = Employee.query.all()
