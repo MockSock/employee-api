@@ -47,6 +47,8 @@ def create_employees():
     full_name = req['full_name']
     role = req['role']
     employment_type = req['employment_type']
-    entries = Employee.query.all()
-    result = employee_schema.dump(entries)
-    return jsonify(result)
+    new_employee = Employee(employee_id=employee_id, full_name=full_name, role=role, employment_type=employment_type)
+
+    db.session.add(new_employee)
+    db.session.commit()
+    return redirect(url_for('get_employees'))
