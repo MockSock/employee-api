@@ -43,5 +43,10 @@ def get_employees():
 @app.route("/employees", methods=["POST"])
 def create_employees():
     req = request.get_json()
-    make_random_id
+    employee_id = req[make_random_id()]
+    full_name = req['full_name']
+    role = req['role']
+    employment_type = req['employment_type']
     entries = Employee.query.all()
+    result = employee_schema.dump(entries)
+    return jsonify(result)
