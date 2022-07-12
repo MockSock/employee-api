@@ -1,12 +1,14 @@
 from flask import Flask, jsonify, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from flask_cors import CORS 
 # put file name without .py
 from id import make_random_id
 
 app = Flask(__name__)
 # Config work
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///employee.db'
+CORS(app)
 
 #  Database Work
 db = SQLAlchemy(app)
